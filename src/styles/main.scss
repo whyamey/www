@@ -1,0 +1,526 @@
+// Fonts //
+
+@font-face {
+    font-family: "spectral";
+    src:
+        url("/spectralbold.woff2") format("woff2"),
+        url("/spectralbold.woff") format("woff");
+    font-weight: bold;
+    font-style: normal;
+    font-display: fallback;
+}
+
+@font-face {
+    font-family: "spectral";
+    src:
+        url("/spectralitalic.woff2") format("woff2"),
+        url("/spectralitalic.woff") format("woff");
+    font-weight: normal;
+    font-style: italic;
+    font-display: fallback;
+}
+
+@font-face {
+    font-family: "spectral";
+    src:
+        url("/spectralregular.woff2") format("woff2"),
+        url("/spectralregular.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: fallback;
+}
+
+// Variables //
+
+$radius: 3px;
+$warner: #ccbcb1;
+$activer: #b1c1cc;
+:root {
+    --base: 198deg;
+    --light: var(--arc-palette-foregroundPrimary, hsl(var(--base), 88%, 33%));
+    --lighter: hsl(var(--base), 22%, 84%);
+    --warn: #df803f;
+    --border: lightgrey;
+}
+
+.lighter {
+    color: var(--light) !important;
+}
+
+// Setup //
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+// setting this and the same in body is similar to 100vh
+// but it works on mobile browsers as well
+// could also do 100vh but low support
+html {
+    height: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Spectral, serif;
+    font-size: 1.1rem;
+    min-height: 100%;
+    margin: 0;
+    padding: 75px 20px;
+    background: hsl(20, 100%, 98%);
+    color: #101010;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
+    flex-direction: column;
+
+    & > * {
+        width: min(600px, 100%);
+    }
+}
+
+// Images
+
+img,
+lite-youtube,
+svg,
+video {
+    border-radius: $radius;
+}
+
+nav,
+img,
+video {
+    width: 100%;
+}
+
+h1 > a > img,
+h2 > a > img {
+    padding-left: 5px;
+    margin-bottom: -2px;
+    width: initial;
+}
+
+// Code //
+
+code,
+:not(footer) > pre {
+    font-size: 1rem;
+    border-radius: $radius;
+    white-space: pre-wrap;
+}
+
+.mastodon-embed {
+    border-radius: $radius;
+}
+
+:not(footer) > pre,
+.mastodon-embed {
+    padding: 10px;
+    border: 2px solid var(--border);
+}
+
+:not(pre) > code {
+    padding: 0 3px;
+}
+
+// Links //
+
+a {
+    color: inherit;
+    text-decoration-color: var(--light);
+    text-decoration-thickness: 2px;
+    transition: color 0.3s;
+
+    &[href*="//"]:not([href*="boehs.org"])
+    {
+        --light: var(--warn);
+    }
+
+    &:hover {
+        color: var(--light);
+    }
+
+    &:active {
+        color: #ff9e9e;
+    }
+}
+
+.e-content a[href*="//"]:not([href*="boehs.org"]):after
+{
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    width: 1.1rem;
+    height: 1.1rem;
+    margin: 0 0.2em;
+    margin-bottom: 3px;
+    border-radius: 3px;
+    background-size: contain;
+    background-image: var(--url);
+}
+
+// Cards //
+
+.card {
+    color: inherit;
+    text-decoration: inherit;
+    border-left: 2px solid var(--light);
+    padding-left: 1em;
+    display: block;
+
+    > p {
+        margin-block: 0.5em;
+    }
+}
+
+.card:not(.contain .card) {
+    margin-block: 1em;
+}
+
+.contain {
+    display: grid;
+    grid-template-rows: masonry;
+    gap: 1em;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    list-style-type: none;
+    padding-inline: 0;
+
+    .card {
+        :first-child {
+            margin-top: 0;
+        }
+
+        :last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.h-feed > ol {
+    list-style-type: none;
+    padding-inline: 0;
+}
+
+// Structure //
+
+// (lists)
+ul {
+    list-style: georgian;
+}
+
+li > p,
+figcaption > p {
+    margin-block: 0;
+}
+
+hr {
+    border: none;
+    text-align: center;
+
+    &::after {
+        content: "✲✲✲";
+    }
+}
+
+// kv == key-value
+nav > dl,
+.kv {
+    display: grid;
+    grid-template-columns: auto max-content;
+    gap: 10px;
+
+    & > dd {
+        border-left: none;
+        margin-left: auto;
+    }
+
+    * {
+        margin-block: 0;
+    }
+
+    ul {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        padding-inline: 0;
+    }
+}
+
+.h-card > :not(.p-name) {
+    display: none;
+}
+
+header {
+    view-transition-name: head;
+
+    > * {
+        display: block;
+        text-align: center;
+        font-size: 14pt;
+    }
+
+    > span a {
+        text-decoration: inherit;
+    }
+}
+
+#is {
+    cursor: pointer;
+}
+
+footer {
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+
+    pre {
+        font-weight: bold;
+        margin: 0;
+    }
+
+    view-transition-name: footer;
+}
+
+article,
+nav,
+header {
+    line-height: 1.7;
+}
+
+article > p {
+    margin-block: 10px;
+}
+
+main {
+    view-transition-name: main;
+}
+
+// Labeling and such //
+
+legend,
+dt,
+label {
+    font-weight: bold;
+}
+
+dd {
+    border-left: 6px double var(--light);
+    margin: 0;
+    padding-left: 10px;
+}
+
+sup,
+sub {
+    font-family: monospace;
+    font-size: 12px;
+
+    &.footnote-ref > a {
+        text-decoration: none;
+    }
+}
+
+// Buttons //
+
+/*button,
+input[type="submit"],
+input[type="button"],
+input[type="reset"] {
+  padding: 1em;
+  margin: 10px 0;
+  background: var(--lighter);
+  border-radius: $radius;
+  transition: 0.3s;
+  cursor: pointer;
+  border: none;
+  font-family: monospace;
+}
+
+button[type="reset"],
+input[type="reset"] {
+  background: $warner;
+}
+
+button,
+input[type="submit"],
+input[type="button"],
+input[type="reset"] {
+  &:hover {
+    background: $activer;
+  }
+}*/
+
+// Tables //
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+    width: 100%;
+}
+
+tr {
+    border-bottom: 1px solid var(--border);
+
+    &:nth-of-type(odd) td {
+        background-color: #fff1ec;
+    }
+}
+
+th,
+td {
+    padding: 6px;
+}
+
+// Blockquote //
+
+figure {
+    blockquote {
+        margin-block-end: 0;
+    }
+    margin-inline: 0;
+    figcaption {
+        font-size: 12px;
+        font-family: monospace;
+    }
+}
+
+blockquote {
+    border-left: 6px double var(--light);
+    margin: 1em 0;
+    border-radius: $radius;
+
+    > p {
+        padding: 10px 10px 10px 15px;
+    }
+}
+
+.penpen {
+    --light: lightpink;
+    background: #fae6f3;
+
+    p::before {
+        content: "🐾 ";
+    }
+}
+
+// Media //
+
+@media screen and (max-width: 800px) {
+    footer {
+        pre {
+            display: none;
+        }
+    }
+
+    footer > nav > dl,
+    .kv {
+        display: block;
+
+        dd {
+            padding-left: 0;
+        }
+    }
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --light: var(
+            --arc-palette-foregroundPrimary,
+            hsl(var(--base), 81%, 40%)
+        );
+        --border: #363636;
+    }
+
+    body {
+        background: #282828;
+        color: whitesmoke;
+    }
+
+    :not(pre) > code,
+    blockquote {
+        background: darkslategray;
+    }
+
+    .penpen {
+        background: #483341;
+    }
+
+    :not(footer) > pre {
+        filter: brightness(1.5);
+    }
+
+    tr {
+        &:nth-of-type(odd) td {
+            background-color: #302e2e;
+        }
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+}
+
+@keyframes fade-out {
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes slide-from-right {
+    from {
+        transform: translateX(30px);
+    }
+}
+
+@keyframes slide-from-left {
+    from {
+        transform: translateX(-30px);
+    }
+}
+
+@keyframes slide-to-left {
+    to {
+        transform: translateX(-30px);
+    }
+}
+
+@keyframes slide-to-right {
+    to {
+        transform: translateX(30px);
+    }
+}
+
+/* 'Forward' transitions */
+::view-transition-old(main) {
+    animation:
+        90ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+        300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
+}
+
+::view-transition-new(main) {
+    animation:
+        210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
+        300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+}
+
+/* Overrides for 'back' transitions */
+.back-transition::view-transition-old(main) {
+    animation-name: fade-out, slide-to-right;
+}
+
+.back-transition::view-transition-new(main) {
+    animation-name: fade-in, slide-from-left;
+}
