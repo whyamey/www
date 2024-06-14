@@ -8,7 +8,7 @@ headInject: |
 -   Shoot me an **email**: <code>⟨{{ 'amey.shukla@uconn.edu' | rails: 5 | raw }}⟩</code>
 -   Toot at me from **x?**: <code>⟨[`@whyamey`](https://x.com/whyamey)⟩</code>
 
-P.S. You might have to refresh the page to see the correct email.
+_P.S. You might have to refresh the page to see the correct email._
 
 <noscript>
 
