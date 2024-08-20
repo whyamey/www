@@ -13,6 +13,6 @@ headInject: |
 
 <sup id="needslang">{{hello.language}}</sup> {style="margin-block-start: 0"}
 
-I'm Amey Shukla, a Ph.D. student in cryptography at the Department of Computer Science & Engineering at the University of Connecticut advised by [Dr. Benjamin Fuller](https://benjamin-fuller.uconn.edu/). 
+I'm Amey, a Ph.D. student in cryptography at the Department of Computer Science & Engineering at the University of Connecticut advised by [Dr. Benjamin Fuller](https://benjamin-fuller.uconn.edu/). 
 
-I am interested in building fast & secure tools for noisy cryptography.
+I am interested in building fast & secure tools for noisy cryptography. Feel free to reach me out at amey dot shukla at uconn dot edu.
