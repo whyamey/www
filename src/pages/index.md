@@ -1,6 +1,5 @@
 ---
 notitle: true
-is: forgetting something
 title: Amey
 description: Hello. It's me.
 headInject: |

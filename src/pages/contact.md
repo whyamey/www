@@ -1,5 +1,4 @@
 ---
-is: not a random oracle
 title: Contact
 headInject: |
     <script defer src="/rails.js"></script>

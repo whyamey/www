@@ -4,6 +4,7 @@ const decode = (msg, rails) => {
     msg.split("").forEach((c, i) => (dec[fen[i]] = c));
     return dec.join("");
 };
+
 function fence(length, rails) {
     const cycle_len = 2 * rails - 2;
     return Array.from({ length: rails }).flatMap((_, r) =>
@@ -12,14 +13,23 @@ function fence(length, rails) {
         ),
     );
 }
-document.querySelectorAll(".rails").forEach((row) => {
-    let n = Number(row.getAttribute("n"));
-    let t = row.textContent;
-    let i = 2;
-    let int = setInterval(() => {
-        row.textContent = decode(t, i);
-        if (n == i) clearInterval(int);
-        i++;
-    }, 100);
-    row.href = "mailto:" + decode(t, n);
-});
+
+function initRailsCipher() {
+    document.querySelectorAll(".rails").forEach((row) => {
+        let n = Number(row.getAttribute("n"));
+        let t = row.textContent;
+        let i = 2;
+        let int = setInterval(() => {
+            row.textContent = decode(t, i);
+            if (n == i) clearInterval(int);
+            i++;
+        }, 100);
+        row.href = "mailto:" + decode(t, n);
+    });
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initRailsCipher);
+} else {
+    initRailsCipher();
+}

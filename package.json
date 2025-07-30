@@ -3,6 +3,7 @@
     "scripts": {
         "start": "eleventy --serve",
         "build": "eleventy",
+        "dev": "eleventy && wrangler pages dev out",
         "clean": "rimraf dist/",
         "format": "prettier --write ."
     },
@@ -38,7 +39,8 @@
     "devDependencies": {
         "@cloudflare/workers-types": "^4.20240320.1",
         "prettier": "^3.1.1",
-        "rimraf": "^5.0.5"
+        "rimraf": "^5.0.5",
+        "wrangler": "^4.26.1"
     },
     "type": "module"
 }
